@@ -1,0 +1,6 @@
+# config/routes/annotations.yaml
+
+api_users:
+    path: /api/users
+    controller: App\Controller\UserController::getUsers
+    methods: ['GET']

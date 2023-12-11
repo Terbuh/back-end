@@ -1,0 +1,4 @@
+api_users:
+    resource: App\Controller\UserController
+    type: annotation
+    prefix: /api

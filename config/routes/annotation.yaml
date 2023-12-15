@@ -4,3 +4,18 @@ api_users:
     path: /api/users
     controller: App\Controller\UserController::getUsers
     methods: ['GET']
+
+api_user_add:
+    path: /api/users
+    controller: App\Controller\UserController::addUser
+    methods: ['POST']
+
+api_user_delete:
+    path: /api/users/{id}
+    controller: App\Controller\UserController::deleteUser
+    methods: ['DELETE']
+    
+update_user:
+    path: /api/users/{id}
+    controller: App\Controller\UserController::updateUser
+    methods: ['PUT']

@@ -52,8 +52,13 @@ class UserController extends AbstractController
         $this->entityManager->persist($user);
         $this->entityManager->flush();
 
-        return $this->json(['message' => 'User added successfully'], 201);
+        // Pobierz zaktualizowaną listę użytkowników
+        $users = $this->userRepository->findAll();
+        $responseData = array_map([$this, 'serializeUser'], $users);
+
+        return $this->json(['message' => 'User added successfully', 'users' => $responseData], 201);
     }
+
 
     /**
      * @Route("/api/users/{id}", name="api_user_update", methods={"PUT"})
@@ -73,6 +78,7 @@ class UserController extends AbstractController
 
         return $this->json(['message' => 'User updated successfully']);
     }
+
 
     /**
      * @Route("/api/users/{id}", name="api_user_delete", methods={"DELETE"})
@@ -117,4 +123,5 @@ class UserController extends AbstractController
         $user->setPhone($data['phone']);
         $user->setBirthDate(new \DateTime($data['birthDate'])); // Adjust the date format as needed
     }
+
 }
